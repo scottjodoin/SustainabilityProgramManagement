@@ -19,78 +19,60 @@ namespace SustainabilityProgramManagement.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("SustainabilityProgramManagement.Models.Program", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Abbreviation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProjectName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Program");
-                });
-
             modelBuilder.Entity("SustainabilityProgramManagement.Models.Project", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("ProjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ProgramID")
-                        .HasColumnType("int");
 
                     b.Property<string>("ProjectCode")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("ProjectEndDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ProjectName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.Property<int?>("SustainabilityProgramId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("ProgramID");
+                    b.HasKey("ProjectId");
+
+                    b.HasIndex("SustainabilityProgramId");
 
                     b.ToTable("Project");
                 });
 
             modelBuilder.Entity("SustainabilityProgramManagement.Models.ProjectSchedule", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("ProjectScheduleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Days")
+                    b.Property<decimal>("Days")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProjectID")
+                    b.Property<int?>("StaffMemberId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StaffMemberID")
-                        .HasColumnType("int");
+                    b.HasKey("ProjectScheduleId");
 
-                    b.HasKey("ID");
+                    b.HasIndex("ProjectId");
 
-                    b.HasIndex("ProjectID");
-
-                    b.HasIndex("StaffMemberID");
+                    b.HasIndex("StaffMemberId");
 
                     b.ToTable("ProjectSchedule");
                 });
 
             modelBuilder.Entity("SustainabilityProgramManagement.Models.StaffMember", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("StaffMemberId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -101,24 +83,37 @@ namespace SustainabilityProgramManagement.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProgramID")
+                    b.Property<int?>("SustainabilityProgramId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProjectID")
-                        .HasColumnType("int");
+                    b.HasKey("StaffMemberId");
 
-                    b.HasKey("ID");
-
-                    b.HasIndex("ProgramID");
-
-                    b.HasIndex("ProjectID");
+                    b.HasIndex("SustainabilityProgramId");
 
                     b.ToTable("StaffMember");
                 });
 
+            modelBuilder.Entity("SustainabilityProgramManagement.Models.SustainabilityProgram", b =>
+                {
+                    b.Property<int>("SustainabilityProgramId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Abbreviation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProgramName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SustainabilityProgramId");
+
+                    b.ToTable("SustainabilityProgram");
+                });
+
             modelBuilder.Entity("SustainabilityProgramManagement.Models.TrackingLog", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("TrackingLogId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -126,62 +121,58 @@ namespace SustainabilityProgramManagement.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Hours")
+                    b.Property<decimal>("Hours")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProjectID")
+                    b.Property<int?>("StaffMemberId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StaffMemberID")
-                        .HasColumnType("int");
+                    b.HasKey("TrackingLogId");
 
-                    b.HasKey("ID");
+                    b.HasIndex("ProjectId");
 
-                    b.HasIndex("ProjectID");
-
-                    b.HasIndex("StaffMemberID");
+                    b.HasIndex("StaffMemberId");
 
                     b.ToTable("TrackingLog");
                 });
 
             modelBuilder.Entity("SustainabilityProgramManagement.Models.Project", b =>
                 {
-                    b.HasOne("SustainabilityProgramManagement.Models.Program", "Program")
+                    b.HasOne("SustainabilityProgramManagement.Models.SustainabilityProgram", "SustainabilityProgram")
                         .WithMany("Projects")
-                        .HasForeignKey("ProgramID");
+                        .HasForeignKey("SustainabilityProgramId");
                 });
 
             modelBuilder.Entity("SustainabilityProgramManagement.Models.ProjectSchedule", b =>
                 {
                     b.HasOne("SustainabilityProgramManagement.Models.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjectID");
+                        .WithMany("ProjectSchedules")
+                        .HasForeignKey("ProjectId");
 
                     b.HasOne("SustainabilityProgramManagement.Models.StaffMember", "StaffMember")
                         .WithMany("ProjectSchedules")
-                        .HasForeignKey("StaffMemberID");
+                        .HasForeignKey("StaffMemberId");
                 });
 
             modelBuilder.Entity("SustainabilityProgramManagement.Models.StaffMember", b =>
                 {
-                    b.HasOne("SustainabilityProgramManagement.Models.Program", "Program")
+                    b.HasOne("SustainabilityProgramManagement.Models.SustainabilityProgram", "SustainabilityProgram")
                         .WithMany("Staff")
-                        .HasForeignKey("ProgramID");
-
-                    b.HasOne("SustainabilityProgramManagement.Models.Project", null)
-                        .WithMany("Staff")
-                        .HasForeignKey("ProjectID");
+                        .HasForeignKey("SustainabilityProgramId");
                 });
 
             modelBuilder.Entity("SustainabilityProgramManagement.Models.TrackingLog", b =>
                 {
                     b.HasOne("SustainabilityProgramManagement.Models.Project", "Project")
                         .WithMany("TrackingLogs")
-                        .HasForeignKey("ProjectID");
+                        .HasForeignKey("ProjectId");
 
                     b.HasOne("SustainabilityProgramManagement.Models.StaffMember", "StaffMember")
                         .WithMany("TrackingLogs")
-                        .HasForeignKey("StaffMemberID");
+                        .HasForeignKey("StaffMemberId");
                 });
 #pragma warning restore 612, 618
         }

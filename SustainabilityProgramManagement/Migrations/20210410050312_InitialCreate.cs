@@ -8,38 +8,38 @@ namespace SustainabilityProgramManagement.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Program",
+                name: "SustainabilityProgram",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    SustainabilityProgramId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProjectName = table.Column<string>(nullable: true),
+                    ProgramName = table.Column<string>(nullable: true),
                     Abbreviation = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Program", x => x.ID);
+                    table.PrimaryKey("PK_SustainabilityProgram", x => x.SustainabilityProgramId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Project",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    ProjectId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProjectCode = table.Column<string>(nullable: true),
                     ProjectName = table.Column<string>(nullable: true),
-                    ProgramID = table.Column<int>(nullable: true),
-                    Date = table.Column<DateTime>(nullable: false)
+                    ProjectEndDate = table.Column<DateTime>(nullable: false),
+                    SustainabilityProgramId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Project", x => x.ID);
+                    table.PrimaryKey("PK_Project", x => x.ProjectId);
                     table.ForeignKey(
-                        name: "FK_Project_Program_ProgramID",
-                        column: x => x.ProgramID,
-                        principalTable: "Program",
-                        principalColumn: "ID",
+                        name: "FK_Project_SustainabilityProgram_SustainabilityProgramId",
+                        column: x => x.SustainabilityProgramId,
+                        principalTable: "SustainabilityProgram",
+                        principalColumn: "SustainabilityProgramId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -47,27 +47,20 @@ namespace SustainabilityProgramManagement.Migrations
                 name: "StaffMember",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    StaffMemberId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
-                    ProgramID = table.Column<int>(nullable: true),
-                    ProjectID = table.Column<int>(nullable: true)
+                    SustainabilityProgramId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StaffMember", x => x.ID);
+                    table.PrimaryKey("PK_StaffMember", x => x.StaffMemberId);
                     table.ForeignKey(
-                        name: "FK_StaffMember_Program_ProgramID",
-                        column: x => x.ProgramID,
-                        principalTable: "Program",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_StaffMember_Project_ProjectID",
-                        column: x => x.ProjectID,
-                        principalTable: "Project",
-                        principalColumn: "ID",
+                        name: "FK_StaffMember_SustainabilityProgram_SustainabilityProgramId",
+                        column: x => x.SustainabilityProgramId,
+                        principalTable: "SustainabilityProgram",
+                        principalColumn: "SustainabilityProgramId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -75,26 +68,26 @@ namespace SustainabilityProgramManagement.Migrations
                 name: "ProjectSchedule",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    ProjectScheduleId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StaffMemberID = table.Column<int>(nullable: true),
-                    ProjectID = table.Column<int>(nullable: true),
-                    Days = table.Column<int>(nullable: false)
+                    Days = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
+                    StaffMemberId = table.Column<int>(nullable: true),
+                    ProjectId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectSchedule", x => x.ID);
+                    table.PrimaryKey("PK_ProjectSchedule", x => x.ProjectScheduleId);
                     table.ForeignKey(
-                        name: "FK_ProjectSchedule_Project_ProjectID",
-                        column: x => x.ProjectID,
+                        name: "FK_ProjectSchedule_Project_ProjectId",
+                        column: x => x.ProjectId,
                         principalTable: "Project",
-                        principalColumn: "ID",
+                        principalColumn: "ProjectId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ProjectSchedule_StaffMember_StaffMemberID",
-                        column: x => x.StaffMemberID,
+                        name: "FK_ProjectSchedule_StaffMember_StaffMemberId",
+                        column: x => x.StaffMemberId,
                         principalTable: "StaffMember",
-                        principalColumn: "ID",
+                        principalColumn: "StaffMemberId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -102,64 +95,59 @@ namespace SustainabilityProgramManagement.Migrations
                 name: "TrackingLog",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    TrackingLogId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StaffMemberID = table.Column<int>(nullable: true),
-                    ProjectID = table.Column<int>(nullable: true),
-                    Hours = table.Column<int>(nullable: false),
+                    StaffMemberId = table.Column<int>(nullable: true),
+                    ProjectId = table.Column<int>(nullable: true),
+                    Hours = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
                     Date = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TrackingLog", x => x.ID);
+                    table.PrimaryKey("PK_TrackingLog", x => x.TrackingLogId);
                     table.ForeignKey(
-                        name: "FK_TrackingLog_Project_ProjectID",
-                        column: x => x.ProjectID,
+                        name: "FK_TrackingLog_Project_ProjectId",
+                        column: x => x.ProjectId,
                         principalTable: "Project",
-                        principalColumn: "ID",
+                        principalColumn: "ProjectId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_TrackingLog_StaffMember_StaffMemberID",
-                        column: x => x.StaffMemberID,
+                        name: "FK_TrackingLog_StaffMember_StaffMemberId",
+                        column: x => x.StaffMemberId,
                         principalTable: "StaffMember",
-                        principalColumn: "ID",
+                        principalColumn: "StaffMemberId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Project_ProgramID",
+                name: "IX_Project_SustainabilityProgramId",
                 table: "Project",
-                column: "ProgramID");
+                column: "SustainabilityProgramId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectSchedule_ProjectID",
+                name: "IX_ProjectSchedule_ProjectId",
                 table: "ProjectSchedule",
-                column: "ProjectID");
+                column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectSchedule_StaffMemberID",
+                name: "IX_ProjectSchedule_StaffMemberId",
                 table: "ProjectSchedule",
-                column: "StaffMemberID");
+                column: "StaffMemberId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StaffMember_ProgramID",
+                name: "IX_StaffMember_SustainabilityProgramId",
                 table: "StaffMember",
-                column: "ProgramID");
+                column: "SustainabilityProgramId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StaffMember_ProjectID",
-                table: "StaffMember",
-                column: "ProjectID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TrackingLog_ProjectID",
+                name: "IX_TrackingLog_ProjectId",
                 table: "TrackingLog",
-                column: "ProjectID");
+                column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TrackingLog_StaffMemberID",
+                name: "IX_TrackingLog_StaffMemberId",
                 table: "TrackingLog",
-                column: "StaffMemberID");
+                column: "StaffMemberId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -171,13 +159,13 @@ namespace SustainabilityProgramManagement.Migrations
                 name: "TrackingLog");
 
             migrationBuilder.DropTable(
-                name: "StaffMember");
-
-            migrationBuilder.DropTable(
                 name: "Project");
 
             migrationBuilder.DropTable(
-                name: "Program");
+                name: "StaffMember");
+
+            migrationBuilder.DropTable(
+                name: "SustainabilityProgram");
         }
     }
 }

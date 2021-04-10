@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using SustainabilityProgramManagement.Data;
 using SustainabilityProgramManagement.Models;
 
-namespace SustainabilityProgramManagement.Pages.Staff
+namespace SustainabilityProgramManagement.Pages.Projects
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace SustainabilityProgramManagement.Pages.Staff
         }
 
         [BindProperty]
-        public StaffMember StaffMember { get; set; }
+        public Project Project { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,14 +30,14 @@ namespace SustainabilityProgramManagement.Pages.Staff
                 return NotFound();
             }
 
-            StaffMember = await _context.StaffMember
-                .Include(s => s.SustainabilityProgram).FirstOrDefaultAsync(m => m.StaffMemberId == id);
+            Project = await _context.Project
+                .Include(p => p.SustainabilityProgram).FirstOrDefaultAsync(m => m.ProjectId == id);
 
-            if (StaffMember == null)
+            if (Project == null)
             {
                 return NotFound();
             }
-           ViewData["SustainabilityProgramNames"] = new SelectList(_context.SustainabilityProgram, "SustainabilityProgramId", "ProgramName");
+           ViewData["SustainabilityProgramId"] = new SelectList(_context.SustainabilityProgram, "SustainabilityProgramId", "SustainabilityProgramId");
             return Page();
         }
 
@@ -50,7 +50,7 @@ namespace SustainabilityProgramManagement.Pages.Staff
                 return Page();
             }
 
-            _context.Attach(StaffMember).State = EntityState.Modified;
+            _context.Attach(Project).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace SustainabilityProgramManagement.Pages.Staff
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StaffMemberExists(StaffMember.StaffMemberId))
+                if (!ProjectExists(Project.ProjectId))
                 {
                     return NotFound();
                 }
@@ -71,9 +71,9 @@ namespace SustainabilityProgramManagement.Pages.Staff
             return RedirectToPage("./Index");
         }
 
-        private bool StaffMemberExists(int id)
+        private bool ProjectExists(int id)
         {
-            return _context.StaffMember.Any(e => e.StaffMemberId == id);
+            return _context.Project.Any(e => e.ProjectId == id);
         }
     }
 }

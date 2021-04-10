@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using SustainabilityProgramManagement.Data;
 using SustainabilityProgramManagement.Models;
 
-namespace SustainabilityProgramManagement.Pages.Staff
+namespace SustainabilityProgramManagement.Pages.Projects
 {
     public class CreateModel : PageModel
     {
@@ -21,12 +21,12 @@ namespace SustainabilityProgramManagement.Pages.Staff
 
         public IActionResult OnGet()
         {
-        ViewData["SustainabilityProgramId"] = new SelectList(_context.SustainabilityProgram, "SustainabilityProgramId", "ProgramName");
+        ViewData["SustainabilityProgramId"] = new SelectList(_context.SustainabilityProgram, "SustainabilityProgramId", "SustainabilityProgramId");
             return Page();
         }
 
         [BindProperty]
-        public StaffMember StaffMember { get; set; }
+        public Project Project { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -37,7 +37,7 @@ namespace SustainabilityProgramManagement.Pages.Staff
                 return Page();
             }
 
-            _context.StaffMember.Add(StaffMember);
+            _context.Project.Add(Project);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

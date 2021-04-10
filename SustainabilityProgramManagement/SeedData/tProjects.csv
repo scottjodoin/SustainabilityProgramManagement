@@ -1,0 +1,113 @@
+projectid,projectcode,projectname,ProgramID,projectenddate
+15357,001,Administration,1,2022-04-01
+15451,021,RS-General,24,2022-04-01
+15452,022,ENB Meetings Combined,10,2022-04-01
+15362,031,Board of Directors,2,2022-04-01
+26907,049,D&I Committee,1,2022-04-01
+26856,051,COVID 19 - Canadian Core Staff,1,2022-04-01
+18201,329,President/CEO,25,2022-04-01
+21537,340,Managing Director,25,2022-04-01
+18287,5Y1,Knowledge Administration,24,2022-04-01
+26994,688,Creation of Energy Transitions Commission (Ivey Fdn),8,2022-04-01
+18285,7Y1,Water Administration,24,2022-04-01
+25782,D48,Climate Policy Support Project (GIZ),18,2022-01-31
+26818,D52,Support Project for the Implementation of the Paris Agreement (BMU) (GIZ),18,2021-05-31
+26821,D53,Adaptation of agricultural value chains to climate change (PrAda),18,2021-09-30
+26867,D56,Prairie Climate Service Network (PCSN) 2020-2021,18,2021-03-31
+26973,D67,Design and Delivery of Canada Vanguard Country Event (ECCC),18,2020-12-11
+26979,D68,Transparency & Effectiveness of Climate Finance - M&E Adapt. (GIZ),18,2021-06-30
+27024,D75,Canada's National Adaptation Strategy (IBC),18,2021-03-22
+25717,E53,Unleashing AI on Canada's Fresh Water (RBC Foundation),17,2021-03-31
+25793,I07,Innovation Fund: Sustainable Food Systems in Canada,13,2021-03-31
+25794,I08,Innovation Fund - Getting to the Youth,13,2021-03-31
+25701,J88,2018-2020 Climate Insights (Various),3,2020-09-30
+25733,J89,Manitoba SME Climate Action      ,3,2020-03-31
+25742,K59,Swedish Postcode Foundation,19,2020-08-31
+25747,K60,Tracking progress platforms - small projects code - (Various),19,2021-03-31
+25748,K61,Vital Signs 2019-2020 (CFC),19,2021-12-31
+25805,K66,GEF Chemicals of Concern SDG Stories (UNEP),19,2022-06-30
+26822,K68,Pacific SIDS Data Journalism,19,2020-12-31
+26826,K69,Small Projects,19,2021-03-31
+26827,K70,Measuring Comprehensive Wealth to Promote Inclusive and Sustainable Development (IDRC),19,2022-12-01
+26829,K71,GIZ Morocco Indicators     ,19,2020-05-15
+26830,K72,FSDS and SD Dimensions (ECCC)     ,19,2020-03-31
+26832,K73,SDG Summit to Summit (Germany BMUB)    ,19,2020-12-31
+26835,K74,Geneva 2030 Ecosystem - 2020,19,2020-12-31
+26855,K75,UNEP Future of the Global Environment Outlook (UNEP),19,2020-12-31
+26865,K76,Leaving No Canadian Behind II,19,2021-09-30
+26882,K77,P4R - Partners for Review (GIZ),19,2020-05-22
+26885,K78,Climate and Trade Knowledge Hub (DFID),19,2021-03-31
+26895,K79, Peg- Winnipeg?s Community Indicator System 2020 (UWW),19,2021-09-30
+26842,Q00,IUCN20 (SDCCM): 2020 IUCN World Conservation Congress,10,2020-07-30
+26854,Q02,(MAB25) BBNJ IGC-4,10,2020-12-31
+26886,Q05,Video Production for DaRT (UNEP),10,2021-01-31
+26889,Q07,11th Blue Monaco Initiative,10,2020-06-30
+26893,Q10,Basel OEWG 12,10,2020-12-03
+26903,Q14,HLPF 2020 Side Events,10,2020-07-31
+26917,Q15,New ENB Website (Swiss FOEN),10,2022-04-01
+26918,Q16,Rotterdam Chemical Review Committee - CRC16 (Swiss core prioritized),10,2020-12-11
+26919,Q17,75th Anniversary of the UN (HGA75),10,2020-12-30
+26921,Q18,Still One Earth (Swedish Ministry of the Environment),10,2020-12-31
+26922,Q19,CBD Special Virtual Sessions,10,2022-04-01
+26923,Q20,33rd UN Water Meeting (UNW33),10,2022-04-01
+26926,Q21,Still One Earth - Norwegian Support,10,2020-12-31
+26927,Q22,Forum for Mayors (United Nations),10,2021-01-07
+26928,Q23,IUFRO-GFEP Launch Event,10,2021-01-15
+26930,Q24, 75th Anniversary of the UN (HGA75) ENBOTS,10,2022-04-01
+26937,Q26,Reactions of local and regional governments to UN75 Report (UCLG),10,2021-01-08
+26941,Q27,GAP20,10,2021-01-31
+26948,Q28,ICLEI UN75 Event,10,2021-01-23
+26951,Q29,Ad Hoc Open-Ended Expert Group on Marine Litter and Microplastics (UNEP),10,2021-02-13
+26952,Q30,56th Session of the ITTC (ITTO Secretariat),10,2021-02-13
+26956,Q31,59th meeting of the GEF Council and CSO Consultation (The World Bank Group),10,2021-03-11
+26957,Q32,UCLG World Council (UCLG),10,2021-02-13
+26967,Q33,Still One Earth (DFATD),10,2021-03-31
+26968,Q34,COP12 and MOP32 (UNEP),10,2021-02-27
+26969,Q35,Convention on Biological Diversity exCOP  (ENB Core),10,2021-02-19
+26970,Q36,UN Climate Change Dialogues 2020 (Germany BMU),10,2021-03-04
+26971,Q37,Climate Summit (Germany BMU),10,2021-03-12
+26977,Q38,Stefan Schwager Video for GEF (The World Bank Group),10,2021-03-06
+26978,Q39,Sixteenth Meeting of the POPs Review Committee to the Stockholm Convention,10,2021-04-16
+26987,Q40,SEI Virtual Meetings (Stiftelsen The Stockholm Environment Institute),10,2020-12-30
+26998,Q41,7th APAN Forum (UNEP),10,2021-06-12
+26999,Q42,4th Forum of Ministers of Environment Authorities (UNEP),10,2021-11-30
+27003,Q43,Africa Regional Forum VII (UNECA),10,2021-06-04
+27008,Q44,EIG 20th Anniversary Publication (FOEN),10,2021-02-28
+27004,Q45,GFMD Summit Event (UCLG),10,2021-04-22
+27010,Q46,Science Policy Business Forum (UNEP),10,2021-05-20
+27015,Q47,GMGSF & Youth Env Assembly (UNEP),10,2021-05-11
+27016,Q48,12th Monaco Blue Initiative (PA2F),10,2021-06-22
+27017,Q49,OECPR and UNEA (UNEP),10,2021-05-16
+27022,Q50,UCLG Policy Councils (UCLG),10,2021-05-12
+27023,Q51,Informal sessions of SBSTTA 24 and SBI 3 (EC),10,2021-06-14
+27028,Q52,CRIC 19 (UNCCD Secretariat),10,2021-06-19
+27034,Q53,IPCC 53 bis (Norwegian Environment Agency),10,2021-06-26
+27035,Q54,34th UN-Water Meeting (ENB Core),10,2021-06-16
+27048,Q55,60th meeting of the GEF Council (The World Bank Group),10,2021-09-17
+27049,Q56,GEF @30 (The World Bank Group),10,2021-09-17
+27050,Q57,First Global Meeting of National Focal Points (UNEP),10,2021-09-04
+26896,QF1,ENB French Translations,10,2021-03-31
+21635,R89,Water Innovation Center (MB Hydro 2017-2021),20,2022-03-31
+25709,R96,Redeploying Water Retention: Green Infrastructure & Phosphorus Capture in the LWB (ECCC),20,2021-03-31
+25767,R99,AquaHacking Lake Winnipeg Challenge 2020 (Various Funders),20,2020-10-31
+25774,RA1,Cattail Harvesting for Carbon Offsets 2019-2020 (MBLL),20,2021-03-31
+25776,RA3,Floating Treatment Wetlands Project (The Winnipeg Foundation),20,2021-03-31
+25779,RA4,Improving Outcomes from Agricultural BMP's in MB's Watersheds (MB Agriculture),20,2022-03-31
+25780,RA5,A collaborative of TK and Western Science for watershed mgmt planning (ECCC),20,2021-09-30
+25784,RA6,Eastern Prairie Living Labs - AAFC / MCDA,20,2023-03-31
+25809,RA9,An Evaluation System for the Manitoba Conservation Trust,20,2020-11-30
+26836,RB2,Seal River EGS (Sayisi Dene First Nation)    ,20,2021-03-31
+26846,RB3,Addressing Microplastics in Manitoba?s Freshwater 2019-20 MB Workplan,20,2021-03-31
+26847,RB4,Natural Infrastructure in Manitoba: Making a Financial Case 2019-20 MB Workplan,20,2021-03-31
+26848,RB5,A Sustainable Protein Strategy for Manitoba 2019-20 MB Workplan,20,2021-03-31
+26849,RB6,Indicators for Manitoba Climate and Green Plan 2019-20 MB Workplan,20,2021-03-31
+26912,RB7,Reducing Agriculture's Climate Risks and Impacts (MB Agriculture),20,2022-12-31
+26949,RB8,Natural Infrastructure in MB - Phase 2 (MB Workplan 2020-2021)     ,20,2021-03-31
+26950,RB9,MB Water Strategy (MB Workplan 2020-2021)     ,20,2021-03-31
+26974,RC1,Analysis on Microplastics Management in Manitoba (MB Workplan 2020-2021),20,2021-03-31
+26988,RC2,Application of FTW: Duckweed Phosphorus Treatment (ECCC),20,2022-03-31
+26989,RC3,Youth and Climate Engagement (McCall MacBain),20,2021-12-30
+26995,RC4,"Valuing CBWM in Canada (Makeway, LWF)",20,2021-02-28
+26942,VO2,ELP: IGF Secretariat Core Costs 2020-2021 (GAC),21,2021-09-30
+19348,Y02,ELA Admin. Non-billable Charges,17,2022-04-01
+20448,Y23,Publishing/Communications Non-billable Charges,17,2022-04-01

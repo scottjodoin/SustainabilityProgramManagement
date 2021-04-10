@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SustainabilityProgramManagement.Data;
 using SustainabilityProgramManagement.Models;
 
-namespace SustainabilityProgramManagement.Pages.Staff
+namespace SustainabilityProgramManagement.Pages.Projects
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace SustainabilityProgramManagement.Pages.Staff
         }
 
         [BindProperty]
-        public StaffMember StaffMember { get; set; }
+        public Project Project { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,10 +29,10 @@ namespace SustainabilityProgramManagement.Pages.Staff
                 return NotFound();
             }
 
-            StaffMember = await _context.StaffMember
-                .Include(s => s.SustainabilityProgram).FirstOrDefaultAsync(m => m.StaffMemberId == id);
+            Project = await _context.Project
+                .Include(p => p.SustainabilityProgram).FirstOrDefaultAsync(m => m.ProjectId == id);
 
-            if (StaffMember == null)
+            if (Project == null)
             {
                 return NotFound();
             }
@@ -46,11 +46,11 @@ namespace SustainabilityProgramManagement.Pages.Staff
                 return NotFound();
             }
 
-            StaffMember = await _context.StaffMember.FindAsync(id);
+            Project = await _context.Project.FindAsync(id);
 
-            if (StaffMember != null)
+            if (Project != null)
             {
-                _context.StaffMember.Remove(StaffMember);
+                _context.Project.Remove(Project);
                 await _context.SaveChangesAsync();
             }
 

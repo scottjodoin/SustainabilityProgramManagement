@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SustainabilityProgramManagement.Data;
 using SustainabilityProgramManagement.Models;
 
-namespace SustainabilityProgramManagement.Pages.Staff
+namespace SustainabilityProgramManagement.Pages.Projects
 {
     public class DetailsModel : PageModel
     {
@@ -19,8 +19,8 @@ namespace SustainabilityProgramManagement.Pages.Staff
             _context = context;
         }
 
-        public StaffMember StaffMember { get; set; }
-        public string SustainabilityProgramName { get; set; }
+        public Project Project { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -28,9 +28,13 @@ namespace SustainabilityProgramManagement.Pages.Staff
                 return NotFound();
             }
 
-            StaffMember = await _context.StaffMember
-                .Include(s => s.SustainabilityProgram).FirstOrDefaultAsync(m => m.StaffMemberId == id);
+            Project = await _context.Project
+                .Include(p => p.SustainabilityProgram).FirstOrDefaultAsync(m => m.ProjectId == id);
 
+            if (Project == null)
+            {
+                return NotFound();
+            }
             return Page();
         }
     }

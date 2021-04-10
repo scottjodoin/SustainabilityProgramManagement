@@ -1,6 +1,5 @@
 ﻿@page
 @model SustainabilityProgramManagement.Pages.Staff.EditModel
-
 @{
     ViewData["Title"] = "Edit";
 }
@@ -13,7 +12,7 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="StaffMember.ID" />
+            <input type="hidden" asp-for="StaffMember.StaffMemberId" />
             <div class="form-group">
                 <label asp-for="StaffMember.FirstName" class="control-label"></label>
                 <input asp-for="StaffMember.FirstName" class="form-control" />
@@ -23,6 +22,11 @@
                 <label asp-for="StaffMember.LastName" class="control-label"></label>
                 <input asp-for="StaffMember.LastName" class="form-control" />
                 <span asp-validation-for="StaffMember.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StaffMember.SustainabilityProgramId" class="control-label"></label>
+                <select asp-for="StaffMember.SustainabilityProgramId" class="form-control" asp-items="ViewBag.SustainabilityProgramNames"></select>
+                <span asp-validation-for="StaffMember.SustainabilityProgramId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

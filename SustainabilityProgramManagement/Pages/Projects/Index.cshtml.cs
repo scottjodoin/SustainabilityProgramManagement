@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SustainabilityProgramManagement.Data;
 using SustainabilityProgramManagement.Models;
 
-namespace SustainabilityProgramManagement.Pages.Staff
+namespace SustainabilityProgramManagement.Pages.Projects
 {
     public class IndexModel : PageModel
     {
@@ -19,12 +19,12 @@ namespace SustainabilityProgramManagement.Pages.Staff
             _context = context;
         }
 
-        public IList<StaffMember> StaffMember { get;set; }
+        public IList<Project> Project { get;set; }
 
         public async Task OnGetAsync()
         {
-            StaffMember = await _context.StaffMember
-                .Include(s => s.SustainabilityProgram).ToListAsync();
+            Project = await _context.Project
+                .Include(p => p.SustainabilityProgram).ToListAsync();
         }
     }
 }
