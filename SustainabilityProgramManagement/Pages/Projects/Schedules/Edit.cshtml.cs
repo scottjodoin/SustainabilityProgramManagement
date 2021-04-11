@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using SustainabilityProgramManagement.Data;
 using SustainabilityProgramManagement.Models;
 
-namespace SustainabilityProgramManagement.Pages.Projects
+namespace SustainabilityProgramManagement.Pages.Projects.Schedules
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace SustainabilityProgramManagement.Pages.Projects
         }
 
         [BindProperty]
-        public Project Project { get; set; }
+        public ProjectSchedule ProjectSchedule { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,15 +30,16 @@ namespace SustainabilityProgramManagement.Pages.Projects
                 return NotFound();
             }
 
-            Project = await _context.Project
-                .Include(p => p.SustainabilityProgram).FirstOrDefaultAsync(m => m.ProjectId == id);
+            ProjectSchedule = await _context.ProjectSchedule
+                .Include(p => p.Project)
+                .Include(p => p.StaffMember).FirstOrDefaultAsync(m => m.ProjectScheduleId == id);
 
-            if (Project == null)
+            if (ProjectSchedule == null)
             {
                 return NotFound();
             }
-
-           ViewData["SustainabilityProgramNames"] = new SelectList(_context.SustainabilityProgram, "SustainabilityProgramId", "ProgramName");
+           ViewData["ProjectId"] = new SelectList(_context.Project, "ProjectId", "ProjectId");
+           ViewData["StaffMemberId"] = new SelectList(_context.StaffMember, "StaffMemberId", "StaffMemberId");
             return Page();
         }
 
@@ -51,7 +52,7 @@ namespace SustainabilityProgramManagement.Pages.Projects
                 return Page();
             }
 
-            _context.Attach(Project).State = EntityState.Modified;
+            _context.Attach(ProjectSchedule).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +60,7 @@ namespace SustainabilityProgramManagement.Pages.Projects
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProjectExists(Project.ProjectId))
+                if (!ProjectScheduleExists(ProjectSchedule.ProjectScheduleId))
                 {
                     return NotFound();
                 }
@@ -72,9 +73,9 @@ namespace SustainabilityProgramManagement.Pages.Projects
             return RedirectToPage("./Index");
         }
 
-        private bool ProjectExists(int id)
+        private bool ProjectScheduleExists(int id)
         {
-            return _context.Project.Any(e => e.ProjectId == id);
+            return _context.ProjectSchedule.Any(e => e.ProjectScheduleId == id);
         }
     }
 }

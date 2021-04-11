@@ -10,9 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Pages\Programs\" />
     <Folder Include="Pages\Program\" />
   </ItemGroup>
 

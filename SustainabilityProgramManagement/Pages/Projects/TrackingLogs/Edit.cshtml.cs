@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using SustainabilityProgramManagement.Data;
 using SustainabilityProgramManagement.Models;
 
-namespace SustainabilityProgramManagement.Pages.Projects
+namespace SustainabilityProgramManagement.Pages.Projects.TrackingLogs
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace SustainabilityProgramManagement.Pages.Projects
         }
 
         [BindProperty]
-        public Project Project { get; set; }
+        public TrackingLog TrackingLog { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,15 +30,16 @@ namespace SustainabilityProgramManagement.Pages.Projects
                 return NotFound();
             }
 
-            Project = await _context.Project
-                .Include(p => p.SustainabilityProgram).FirstOrDefaultAsync(m => m.ProjectId == id);
+            TrackingLog = await _context.TrackingLog
+                .Include(t => t.Project)
+                .Include(t => t.StaffMember).FirstOrDefaultAsync(m => m.TrackingLogId == id);
 
-            if (Project == null)
+            if (TrackingLog == null)
             {
                 return NotFound();
             }
-
-           ViewData["SustainabilityProgramNames"] = new SelectList(_context.SustainabilityProgram, "SustainabilityProgramId", "ProgramName");
+           ViewData["ProjectId"] = new SelectList(_context.Project, "ProjectId", "ProjectName");
+           ViewData["StaffMemberId"] = new SelectList(_context.StaffMember, "StaffMemberId", "FullName");
             return Page();
         }
 
@@ -51,7 +52,7 @@ namespace SustainabilityProgramManagement.Pages.Projects
                 return Page();
             }
 
-            _context.Attach(Project).State = EntityState.Modified;
+            _context.Attach(TrackingLog).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +60,7 @@ namespace SustainabilityProgramManagement.Pages.Projects
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProjectExists(Project.ProjectId))
+                if (!TrackingLogExists(TrackingLog.TrackingLogId))
                 {
                     return NotFound();
                 }
@@ -72,9 +73,9 @@ namespace SustainabilityProgramManagement.Pages.Projects
             return RedirectToPage("./Index");
         }
 
-        private bool ProjectExists(int id)
+        private bool TrackingLogExists(int id)
         {
-            return _context.Project.Any(e => e.ProjectId == id);
+            return _context.TrackingLog.Any(e => e.TrackingLogId == id);
         }
     }
 }

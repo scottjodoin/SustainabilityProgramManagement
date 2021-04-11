@@ -1,5 +1,6 @@
 ﻿@page
 @model SustainabilityProgramManagement.Pages.Projects.DetailsModel
+@using SustainabilityProgramManagement.Models;
 
 @{
     ViewData["Title"] = "Details";
@@ -11,33 +12,53 @@
     <h4>Project</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Project.ProjectCode)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Project.ProjectCode)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Project.ProjectName)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Project.ProjectName)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Project.ProjectEndDate)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Project.ProjectEndDate)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Project.SustainabilityProgram)
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Project.SustainabilityProgram.SustainabilityProgramId)
+        <dd class="col-sm-8">
+            <a asp-page="/Programs/Details" asp-route-id=@Model.Project.SustainabilityProgram.SustainabilityProgramId>
+                @Html.DisplayFor(model => model.Project.SustainabilityProgram.ProgramName)
+            </a>
         </dd>
     </dl>
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Project.ProjectId">Edit</a> |
     <a asp-page="./Index">Back to List</a>
+</div>
+
+<div>
+    <h4>Staff Involved in this Project</h4>
+    <ul>
+        @foreach (StaffMember item in Model.Staff)
+        {
+            <li>
+                <a asp-page="/Staff" asp-route-id="@item.StaffMemberId"></a>
+                @item.FullName
+            </li>
+        }
+        @if (Model.Staff.Count == 0)
+        {
+            <il>No staff currently working on this project.</il>
+        }
+    </ul>
+
 </div>

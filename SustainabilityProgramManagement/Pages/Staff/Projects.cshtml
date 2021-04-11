@@ -1,0 +1,60 @@
+﻿@page
+@model SustainabilityProgramManagement.Pages.Staff.ProjectsModel
+@using SustainabilityProgramManagement.Models;
+@using SustainabilityProgramManagement.Models.Reports;
+ 
+@{
+    ViewData["Title"] = "Staff Projects";
+}
+
+<h1>
+    Project Report for @Html.DisplayFor(model => model.StaffMember.FullName)
+</h1>
+
+    <a asp-page="./Index">Back to Staff List</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.StaffProjectsReport[0].Project)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StaffProjectsReport[0].TrackedHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StaffProjectsReport[0].RemainingTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StaffProjectsReport[0].EndDate)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int i = 1; }
+        @foreach (StaffProjectsReport item in Model.StaffProjectsReport)
+        {
+            <tr>
+                <td>
+                    @(i++)
+                </td>
+                <td>
+                    <a asp-page="/Projects/Details" asp-route-id="@item.ProjectId">
+                        @item.Project.ProjectName (@item.Project.SustainabilityProgram.Abbreviation-@item.Project.ProjectCode)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrackedHours) h
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RemainingTime) h
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>

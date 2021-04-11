@@ -1,0 +1,47 @@
+﻿@page
+@model SustainabilityProgramManagement.Pages.Projects.TrackingLogs.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TrackingLog</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TrackingLog.StaffMember)
+        </dt>
+        <dd class="col-sm-10">
+            <a asp-page="/Staff" asp-route-id="@Model.TrackingLog.StaffMemberId">
+                @Html.DisplayFor(model => model.TrackingLog.StaffMember.FullName)
+            </a>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TrackingLog.Project)
+        </dt>
+        <dd class="col-sm-10">
+            <a asp-page="/Projects" asp-route-id="@Model.TrackingLog.ProjectId">
+                @Html.DisplayFor(model => model.TrackingLog.Project.ProjectName) (@Html.DisplayFor(model => model.TrackingLog.Project.SustainabilityProgram.Abbreviation)-@Html.DisplayFor(model => model.TrackingLog.Project.ProjectCode))
+            </a>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TrackingLog.Hours)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TrackingLog.Hours)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TrackingLog.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TrackingLog.Date)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.TrackingLog.TrackingLogId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

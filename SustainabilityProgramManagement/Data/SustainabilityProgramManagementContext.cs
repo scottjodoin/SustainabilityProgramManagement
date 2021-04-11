@@ -25,6 +25,5 @@ namespace SustainabilityProgramManagement.Data
         public DbSet<ProjectSchedule> ProjectSchedule { get; set; }
 
         public DbSet<TrackingLog> TrackingLog { get; set; }
-
     }
 }

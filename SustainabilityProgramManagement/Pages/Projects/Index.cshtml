@@ -32,7 +32,7 @@
 @foreach (var item in Model.Project) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ProjectCode)
+                @Html.DisplayFor(modelItem => item.SustainabilityProgram.Abbreviation)-@Html.DisplayFor(modelItem => item.ProjectCode)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProjectName)
@@ -41,7 +41,9 @@
                 @Html.DisplayFor(modelItem => item.ProjectEndDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SustainabilityProgram.SustainabilityProgramId)
+                <a asp-page="/Programs/Details" asp-route-id="@item.SustainabilityProgramId">
+                    @Html.DisplayFor(modelItem => item.SustainabilityProgram.ProgramName)
+                </a>
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ProjectId">Edit</a> |

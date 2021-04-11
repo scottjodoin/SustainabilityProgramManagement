@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using SustainabilityProgramManagement.Data;
 using SustainabilityProgramManagement.Models;
 
-namespace SustainabilityProgramManagement.Pages.Projects
+namespace SustainabilityProgramManagement.Pages.Programs
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace SustainabilityProgramManagement.Pages.Projects
         }
 
         [BindProperty]
-        public Project Project { get; set; }
+        public SustainabilityProgram SustainabilityProgram { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,15 +30,12 @@ namespace SustainabilityProgramManagement.Pages.Projects
                 return NotFound();
             }
 
-            Project = await _context.Project
-                .Include(p => p.SustainabilityProgram).FirstOrDefaultAsync(m => m.ProjectId == id);
+            SustainabilityProgram = await _context.SustainabilityProgram.FirstOrDefaultAsync(m => m.SustainabilityProgramId == id);
 
-            if (Project == null)
+            if (SustainabilityProgram == null)
             {
                 return NotFound();
             }
-
-           ViewData["SustainabilityProgramNames"] = new SelectList(_context.SustainabilityProgram, "SustainabilityProgramId", "ProgramName");
             return Page();
         }
 
@@ -51,7 +48,7 @@ namespace SustainabilityProgramManagement.Pages.Projects
                 return Page();
             }
 
-            _context.Attach(Project).State = EntityState.Modified;
+            _context.Attach(SustainabilityProgram).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +56,7 @@ namespace SustainabilityProgramManagement.Pages.Projects
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProjectExists(Project.ProjectId))
+                if (!SustainabilityProgramExists(SustainabilityProgram.SustainabilityProgramId))
                 {
                     return NotFound();
                 }
@@ -72,9 +69,9 @@ namespace SustainabilityProgramManagement.Pages.Projects
             return RedirectToPage("./Index");
         }
 
-        private bool ProjectExists(int id)
+        private bool SustainabilityProgramExists(int id)
         {
-            return _context.Project.Any(e => e.ProjectId == id);
+            return _context.SustainabilityProgram.Any(e => e.SustainabilityProgramId == id);
         }
     }
 }

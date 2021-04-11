@@ -1,0 +1,62 @@
+﻿@page
+@model SustainabilityProgramManagement.Pages.Projects.Schedules.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectSchedule[0].Project)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectSchedule[0].Days)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectSchedule[0].StaffMember)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var psGroup in Model.ProjectScheduleGroups)
+        {
+
+            @foreach (var item in psGroup)
+            {
+                <tr>
+                    @if (item == psGroup.First())
+                    {
+                        <td rowspan="@psGroup.Count()" valing="top">
+                            <a asp-page="/Projects" asp-route-id="@item.ProjectId">
+                                @Html.DisplayFor(modelItem => item.Project.ProjectName)
+                            </a>
+                        </td>
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Days)
+                    </td>
+                    <td>
+                        <a asp-page="/Staff" asp-route-id="@item.StaffMemberId">
+                            @Html.DisplayFor(modelItem => item.StaffMember.FullName)
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ProjectScheduleId">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ProjectScheduleId">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ProjectScheduleId">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+    </table>

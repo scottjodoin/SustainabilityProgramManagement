@@ -20,7 +20,8 @@ namespace SustainabilityProgramManagement.Pages.Projects
         }
 
         public Project Project { get; set; }
-
+        [BindProperty]
+        public List<StaffMember> Staff { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -35,6 +36,20 @@ namespace SustainabilityProgramManagement.Pages.Projects
             {
                 return NotFound();
             }
+
+            // Unfortunately EF6 does not yet have robust support for many-to-many relationships
+            Staff = await _context.StaffMember
+                .FromSqlRaw(@"
+                SELECT DISTINCT c.* FROM dbo.TrackingLog a
+                    LEFT JOIN dbo.Project b
+                        ON a.ProjectId=b.ProjectId
+                    LEFT JOIN dbo.StaffMember c
+                        ON a.StaffMemberId=c.StaffMemberId
+                    WHERE a.ProjectId={0};", id).ToListAsync();
+
+
+            ViewData["SustainabilityProgramId"] = Project.SustainabilityProgramId;
+
             return Page();
         }
     }

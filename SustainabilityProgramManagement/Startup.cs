@@ -30,7 +30,11 @@ namespace SustainabilityProgramManagement
             services.AddDbContext<SustainabilityProgramManagementContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("SustainabilityProgramManagementContext"));
-                options.EnableSensitiveDataLogging();
+            });
+
+            services.AddDbContext<ReportContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("SustainabilityProgramManagementContext"));
             });
         }
 

@@ -24,5 +24,13 @@ namespace SustainabilityProgramManagement.Models
 
         public ICollection<TrackingLog> TrackingLogs { get; set; }
         public ICollection<ProjectSchedule> ProjectSchedules { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                return $"{FirstName} {LastName}";
+            }
+        }
     }
 }
