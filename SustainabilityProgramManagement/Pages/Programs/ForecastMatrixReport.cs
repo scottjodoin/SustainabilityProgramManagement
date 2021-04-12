@@ -79,9 +79,9 @@ namespace SustainabilityProgramManagement.Pages.Programs
 
             // populate the rows
             ForecastReport1 = GetProgramForecastMatrixRow(Program1, firstTrackedMonth, lastTrackedMonth, forecastMonths);
-            ForecastReport1 = ForecastReport1 ?? new List<ForecastReportRow>();
+            ForecastReport1 ??= new List<ForecastReportRow>();
             ForecastReport2 = GetProgramForecastMatrixRow(Program2, firstTrackedMonth, lastTrackedMonth, forecastMonths);
-            ForecastReport2 = ForecastReport2 ?? new List<ForecastReportRow>();
+            ForecastReport2 ??= new List<ForecastReportRow>();
 
             return Page();
         }
