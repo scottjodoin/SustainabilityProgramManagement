@@ -107,7 +107,7 @@ namespace SustainabilityProgramManagement.Models
             var sql = $@"SET IDENTITY_INSERT [dbo].[StaffMember] ON
             INSERT INTO [dbo].[StaffMember]
             ([StaffMemberId], [FirstName], [LastName], [SustainabilityProgramId])
-            VALUES ('{staffMember.StaffMemberId}', '{staffMember.FirstName}', '{staffMember.LastName}', '{staffMember.SustainabilityProgramId}' )
+            VALUES ('{staffMember.StaffMemberId}', '{staffMember.FirstName.Replace("'", "''")}', '{staffMember.LastName.Replace("'", "''")}', '{staffMember.SustainabilityProgramId}' )
             SET IDENTITY_INSERT [dbo].[StaffMember] OFF";
             await context.Database.ExecuteSqlRawAsync(sql);
             return staffMember;
@@ -119,7 +119,7 @@ namespace SustainabilityProgramManagement.Models
             ([ProjectId], [ProjectCode], [ProjectName], [ProjectEndDate], [SustainabilityProgramId])
             VALUES ('{project.ProjectId
             }', '{project.ProjectCode
-            }', '{project.ProjectName
+            }', '{project.ProjectName.Replace("'", "''")
             }', '{project.ProjectEndDate
             }', '{project.SustainabilityProgramId}' ) 
             SET IDENTITY_INSERT [dbo].[Project] OFF";
