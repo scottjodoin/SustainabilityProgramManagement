@@ -51,7 +51,7 @@ namespace SustainabilityProgramManagement.Pages.Projects.TrackingLogs
 
             if (TrackingLog != null)
             {
-                _context.TrackingLog.Remove(TrackingLog);
+                // _context.TrackingLog.Remove(TrackingLog);
                 await _context.SaveChangesAsync();
             }
 

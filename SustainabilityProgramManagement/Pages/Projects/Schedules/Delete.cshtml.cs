@@ -51,7 +51,7 @@ namespace SustainabilityProgramManagement.Pages.Projects.Schedules
 
             if (ProjectSchedule != null)
             {
-                _context.ProjectSchedule.Remove(ProjectSchedule);
+                // _context.ProjectSchedule.Remove(ProjectSchedule);
                 await _context.SaveChangesAsync();
             }
 
