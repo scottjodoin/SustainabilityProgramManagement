@@ -40,16 +40,14 @@ namespace SustainabilityProgramManagement.Pages.Staff
             // Collect the data for the reports
             StaffProjectsReport = await _context.StaffProjectsReport.FromSqlRaw(@"
             SELECT a.StaffMemberId AS StaffMemberId, a.ProjectId as ProjectId,
-                    SUM(a.Hours) AS TrackedHours, c.Days*7.5 AS TotalTime, b.ProjectEndDate AS EndDate
-                FROM dbo.TrackingLog a
-                LEFT JOIN dbo.Project b
-                    ON a.ProjectId=b.ProjectId
-                LEFT JOIN dbo.ProjectSchedule c
-                    ON a.ProjectId=c.ProjectId
-                WHERE
-                    a.StaffMemberId={0}
-                GROUP BY a.StaffMemberId, a.ProjectId, c.Days, b.ProjectEndDate
-            ", staffid)
+                        a.TrackedHours AS TrackedHours, c.Days*7.5 AS TotalTime, b.ProjectEndDate AS EndDate
+                    FROM (SELECT StaffMemberId, SUM(Hours) AS TrackedHours, ProjectId FROM dbo.TrackingLog WHERE
+                        StaffMemberId=3535 GROUP BY ProjectId, StaffMemberId) a
+                    LEFT JOIN dbo.Project b
+                        ON a.ProjectId=b.ProjectId
+                    LEFT JOIN dbo.ProjectSchedule c
+                        ON a.ProjectId=c.ProjectId
+                ", staffid)
                 .Include(spr => spr.Project)
                     .ThenInclude(p => p.SustainabilityProgram)
                 .OrderByDescending(spr => spr.EndDate)
