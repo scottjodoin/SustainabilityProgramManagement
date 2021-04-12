@@ -6,5 +6,40 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>This project was built to demonstrate my ability to create reports based on data.</p>
 </div>
+    
+<h2><a href="/Staff/Projects?staffid=3535">Part A</a> – Individual Staff Time Tracked/Scheduled Summary Table</h2>
+<p>
+    <i>Create a tabular view for a single staff member showing a line for each project with time already tracked to the project (as a total), time remaining in the project (scheduled time minus tracked time) and the project end date.</i>
+</p>
+<p> I chose to use a SQL statement to prepare the data.</p>
+
+<h2><a href="/Programs/forecastmatrixreport?programIds=17&programIds=25">Part B</a> – Program staff forecasting matrix</h2>
+<p>
+    <i>Create a matrix consisting of 1 row per staff for each program. Each row would show columns with actual time tracking, on a monthly basis, for the staff member and then linearly forecast their remaining scheduled time for the next 8 months. The linear forecast consists of taking the remaining scheduled hours and spreading them out evenly, on a monthly basis, for the remaining duration of the project, based on its end date. Where projects end after the 8 month period, you should still forecast for the entire remaining duration of the project.</i>
+</p>
+<p>I collect rows for each staff-project grouping and forecast for each month using dictionaries. Finally, I summed the rows to arrive at the result.</p>
+<p>
+    <i>Describe alternate forecasting methods and ramifications of implementing them. Your proposed alternates do not necessarily need to be practical but you should present benefits/drawbacks and technical implementation issue that you consider relevant in the alternate forecasting methods.</i>
+</p>
+<p>There are multiple ways that the data could be forecasted.<p>
+<p>The first question is whether to aggregate the staff-project rows before, or after forecasting. An example of this kind of row would be Jim Halpert's monthly hours for the "Experimental Lakes Cattail Collection" project.</p>
+<p>I chose to forecast within each staff-project row and aggregate after these analyses. Had I forecast after aggregating, the numbers would be less precise. The biggest drawback to this approach is that I need to fetch each staff-project row from the database. As it is, my could be improved through the use of carefully constructed SQL statements.</p>
+<p>Additional concerns for forecasting include (my choices);</p>
+<ul>
+    <li>Should I start on the first of the next month? (yes)</li>
+    <li>Should I interpolate daily or monthly? (daily)</li>
+    <li>Should I bother to exclude weekends / staff holidays? (no - this would require another database)</li>
+    <li>Should I include each project as a row on the report? (no)</li>
+</ul>
+<p>The forecasting requested was an equal division of the time remaining on various projects. A statistical linear forecast would include looking at the existing data, finding a line of best fit, and then showing how long the project is anticipated to take based on extrapolation.</p>
+
+<p>Perhaps projects of certain types do not follow a linear model. It is possible that hours tend to increase towards a due date as pressure, or the project might be seasonal. Either of these approaches could be implemented with a ForecastType class.</p>
+
+</p>Of course, all of these decisions depends on what would be useful to the project managers!</p>
+
+<p>Thanks for viewing my project! Please consider the resume I have provided to your hiring team.</p>
+
+<h4>Scott Jodoin</h4>
+<p><a href="https://github.com/scottjodoin/SustainabilityProgramManagement">View on Github</a> | <a href="">LinkedIn</a></p>

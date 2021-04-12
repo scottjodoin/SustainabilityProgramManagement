@@ -1,60 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using SustainabilityProgramManagement.Data;
-using SustainabilityProgramManagement.Models;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
+//using Microsoft.AspNetCore.Mvc;
+//using Microsoft.AspNetCore.Mvc.RazorPages;
+//using Microsoft.EntityFrameworkCore;
+//using SustainabilityProgramManagement.Data;
+//using SustainabilityProgramManagement.Models;
 
-namespace SustainabilityProgramManagement.Pages.Projects
-{
-    public class DeleteModel : PageModel
-    {
-        private readonly SustainabilityProgramManagement.Data.SustainabilityProgramManagementContext _context;
+//namespace SustainabilityProgramManagement.Pages.Projects
+//{
+//    public class DeleteModel : PageModel
+//    {
+//        private readonly SustainabilityProgramManagement.Data.SustainabilityProgramManagementContext _context;
 
-        public DeleteModel(SustainabilityProgramManagement.Data.SustainabilityProgramManagementContext context)
-        {
-            _context = context;
-        }
+//        public DeleteModel(SustainabilityProgramManagement.Data.SustainabilityProgramManagementContext context)
+//        {
+//            _context = context;
+//        }
 
-        [BindProperty]
-        public Project Project { get; set; }
+//        [BindProperty]
+//        public Project Project { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+//        public async Task<IActionResult> OnGetAsync(int? id)
+//        {
+//            if (id == null)
+//            {
+//                return NotFound();
+//            }
 
-            Project = await _context.Project
-                .Include(p => p.SustainabilityProgram).FirstOrDefaultAsync(m => m.ProjectId == id);
+//            Project = await _context.Project
+//                .Include(p => p.SustainabilityProgram).FirstOrDefaultAsync(m => m.ProjectId == id);
 
-            if (Project == null)
-            {
-                return NotFound();
-            }
-            return Page();
-        }
+//            if (Project == null)
+//            {
+//                return NotFound();
+//            }
+//            return Page();
+//        }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+//        public async Task<IActionResult> OnPostAsync(int? id)
+//        {
+//            if (id == null)
+//            {
+//                return NotFound();
+//            }
 
-            Project = await _context.Project.FindAsync(id);
+//            Project = await _context.Project.FindAsync(id);
 
-            if (Project != null)
-            {
-                _context.Project.Remove(Project);
-                await _context.SaveChangesAsync();
-            }
+//            if (Project != null)
+//            {
+//                _context.Project.Remove(Project);
+//                await _context.SaveChangesAsync();
+//            }
 
-            return RedirectToPage("./Index");
-        }
-    }
-}
+//            return RedirectToPage("./Index");
+//        }
+//    }
+//}

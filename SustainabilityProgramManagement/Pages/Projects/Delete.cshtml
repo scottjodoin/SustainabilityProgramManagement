@@ -1,4 +1,4 @@
-﻿@page
+﻿@*@page
 @model SustainabilityProgramManagement.Pages.Projects.DeleteModel
 
 @{
@@ -37,10 +37,10 @@
             @Html.DisplayFor(model => model.Project.SustainabilityProgram.SustainabilityProgramId)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Project.ProjectId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-page="./Index">Back to List</a>
     </form>
-</div>
+</div>*@

@@ -1,0 +1,94 @@
+﻿@page
+@model SustainabilityProgramManagement.Pages.Programs.ForecastMatrixReportModel
+@using SustainabilityProgramManagement.Models
+
+@{
+    ViewData["Title"] = "Forecast Matrix Report";
+}
+
+<h1>Forecast Matrix Report</h1>
+<p>Comparing
+    <span>
+        @Model.Program1.ProgramName
+    </span>
+    and
+    <span>
+        @Model.Program2.ProgramName
+    </span>
+</p>
+<div class="w-100" style="overflow:scroll">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Program Name</th>
+                <th>Staff Name</th>
+                @{ int i = 0; }
+                @foreach (DateTime month in ViewBag.MonthArray)
+                {
+
+                    i+=1;
+                    string monthString = month.ToString("MMM yy").Replace(" ", "&nbsp;");
+
+                    <th>
+                        
+                        @Html.Raw((i > ViewBag.TrackedMonthsCount) ? $"({monthString})" : monthString)
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in Model.ForecastReport1)
+            {
+                <tr>
+                    @if (row == Model.ForecastReport1.First())
+                    {
+                        <td rowspan="@Model.ForecastReport1.Count" valign="top">
+                            @row.SustainabilityProgram.ProgramName
+                        </td>
+                    }
+                    <td>
+                        @row.StaffMember.FullName
+                    </td>
+                    @foreach (var item in row.HoursList)
+                    {
+                        <td>
+                            @if (item > 0)
+                            {
+                                <span>
+                                    @(item.ToString("N2"))h
+                                </span>
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+        <tbody>
+            @foreach (var row in Model.ForecastReport2)
+            {
+                <tr>
+                    @if (row == Model.ForecastReport2.First())
+                    {
+                        <td rowspan="@Model.ForecastReport2.Count" valign="top">
+                            @row.SustainabilityProgram.ProgramName
+                        </td>
+                    }
+                    <td>
+                        @row.StaffMember.FullName
+                    </td>
+                    @foreach (var item in row.HoursList)
+                    {
+                        <td>
+                            @if (item > 0)
+                            {
+                                <span>
+                                    @(item.ToString("N2"))h
+                                </span>
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
