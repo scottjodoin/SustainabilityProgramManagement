@@ -80,9 +80,9 @@ namespace SustainabilityProgramManagement.Models
                 //Special functions here because assigning ids is usually not allowed.
                 using var transaction = context.Database.BeginTransaction();
 
-                //await context.EnableIdentityInsert<SustainabilityProgram>();
-                //await context.EnableIdentityInsert<StaffMember>();
-                //await context.EnableIdentityInsert<Project>();
+                await context.EnableIdentityInsert<SustainabilityProgram>();
+                await context.EnableIdentityInsert<StaffMember>();
+                await context.EnableIdentityInsert<Project>();
                 context.SaveChanges();
                 await context.DisableIdentityInsert<SustainabilityProgram>();
                 await context.DisableIdentityInsert<StaffMember>();
