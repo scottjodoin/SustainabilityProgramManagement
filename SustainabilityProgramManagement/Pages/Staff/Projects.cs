@@ -13,9 +13,9 @@ namespace SustainabilityProgramManagement.Pages.Staff
 {
     public class ProjectsModel : PageModel
     {
-        private readonly ReportContext _context;
+        private readonly SustainabilityProgramManagementContext _context;
 
-        public ProjectsModel(ReportContext context)
+        public ProjectsModel(SustainabilityProgramManagementContext context)
         {
             _context = context;
         }

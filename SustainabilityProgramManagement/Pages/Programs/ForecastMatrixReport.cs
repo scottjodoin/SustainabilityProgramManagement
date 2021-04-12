@@ -13,9 +13,9 @@ namespace SustainabilityProgramManagement.Pages.Programs
 {
     public class ForecastMatrixReportModel : PageModel
     {
-        private readonly SustainabilityProgramManagement.Data.ReportContext _context;
+        private readonly SustainabilityProgramManagement.Data.SustainabilityProgramManagementContext _context;
 
-        public ForecastMatrixReportModel(SustainabilityProgramManagement.Data.ReportContext context)
+        public ForecastMatrixReportModel(SustainabilityProgramManagement.Data.SustainabilityProgramManagementContext context)
         {
             _context = context;
         }

@@ -19,7 +19,9 @@ namespace SustainabilityProgramManagement.Models
         public string LastName { get; set; }
 
         [Name("programid")]
+
         public int? SustainabilityProgramId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public SustainabilityProgram SustainabilityProgram { get; set; }
 
         public ICollection<TrackingLog> TrackingLogs { get; set; }

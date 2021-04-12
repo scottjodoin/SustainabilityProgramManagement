@@ -32,7 +32,7 @@ namespace SustainabilityProgramManagement
                 options.UseSqlServer(Configuration.GetConnectionString("SustainabilityProgramManagementContext"));
             });
 
-            services.AddDbContext<ReportContext>(options =>
+            services.AddDbContext<SustainabilityProgramManagementContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("SustainabilityProgramManagementContext"));
             });

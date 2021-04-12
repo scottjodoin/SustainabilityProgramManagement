@@ -40,6 +40,7 @@ namespace SustainabilityProgramManagement.Models
                         var records = csv.GetRecords<SustainabilityProgram>().ToArray();
                         context.SustainabilityProgram.AddRange(records);
                     }
+                    context.SaveChangesWithIdentityInsert<SustainabilityProgram>();
                 }
 
 
@@ -52,9 +53,7 @@ namespace SustainabilityProgramManagement.Models
                         var records = csv.GetRecords<StaffMember>().ToArray();
                         foreach (var record in records)
                         {
-                            // Need to make sure record.SustainabilityProgram is null so that there are no foreign object conflicts.
-                            record.SustainabilityProgram = null;
-                            context.StaffMember.Add(record);
+                            await SeedStaffMember(context, record);
                         }
 
                     }
@@ -69,25 +68,12 @@ namespace SustainabilityProgramManagement.Models
                         var records = csv.GetRecords<Project>().ToArray();
                         foreach (var record in records)
                         {
-                            // Need to make sure foreign objects are null (keep the ids!) so that there are no foreign object conflicts.
-                            record.SustainabilityProgram = null;
-                            context.Project.Add(record);
+                            await SeedProject(context, record);
                         }
 
                     }
                 }
 
-                //Special functions here because assigning ids is usually not allowed.
-                using var transaction = context.Database.BeginTransaction();
-
-                await context.EnableIdentityInsert<SustainabilityProgram>();
-                await context.EnableIdentityInsert<StaffMember>();
-                await context.EnableIdentityInsert<Project>();
-                context.SaveChanges();
-                await context.DisableIdentityInsert<SustainabilityProgram>();
-                await context.DisableIdentityInsert<StaffMember>();
-                await context.DisableIdentityInsert<Project>();
-                transaction.Commit();
 
                 // ProjectSchedule
                 if (!context.ProjectSchedule.Any())
@@ -116,7 +102,30 @@ namespace SustainabilityProgramManagement.Models
                 }
             }
         }
-
+        private async static Task<StaffMember> SeedStaffMember(this SustainabilityProgramManagementContext context, StaffMember staffMember)
+        {
+            var sql = $@"SET IDENTITY_INSERT [dbo].[StaffMember] ON
+            INSERT INTO [dbo].[StaffMember]
+            ([StaffMemberId], [FirstName], [LastName], [SustainabilityProgramId])
+            VALUES ('{staffMember.StaffMemberId}', '{staffMember.FirstName}', '{staffMember.LastName}', '{staffMember.SustainabilityProgramId}' )
+            SET IDENTITY_INSERT [dbo].[StaffMember] OFF";
+            await context.Database.ExecuteSqlRawAsync(sql);
+            return staffMember;
+        }
+        private async static Task<Project> SeedProject(this SustainabilityProgramManagementContext context, Project project)
+        {
+            var sql = $@"SET IDENTITY_INSERT [dbo].[Project] ON
+            INSERT INTO [dbo].[Project]
+            ([ProjectId], [ProjectCode], [ProjectName], [ProjectEndDate], [SustainabilityProgramId])
+            VALUES ('{project.ProjectId
+            }', '{project.ProjectCode
+            }', '{project.ProjectName
+            }', '{project.ProjectEndDate
+            }', '{project.SustainabilityProgramId}' ) 
+            SET IDENTITY_INSERT [dbo].[Project] OFF";
+            await context.Database.ExecuteSqlRawAsync(sql);
+            return project;
+        }
         private async static Task<ProjectSchedule> SeedProjectSchedule(this SustainabilityProgramManagementContext context, ProjectSchedule projectSchedule)
         {
             var staffMember = await context.StaffMember.FindAsync(projectSchedule.StaffMemberId);
